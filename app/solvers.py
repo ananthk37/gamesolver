@@ -1,5 +1,6 @@
-from __main__ import server
+from ..server import server
+from flask import jsonify
 
 @server.route('/health', methods=['GET'])
 def head():
-    return "Hello!"
+    return jsonify("Hello!")

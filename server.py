@@ -1,6 +1,7 @@
 from flask import Flask
 server = Flask(__name__)
 
-import app.solvers
+from .app import solvers
 
-server.run(debug=True)
+if __name__ == "__main__":
+    server.run(debug=True)
