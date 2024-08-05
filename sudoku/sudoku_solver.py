@@ -7,16 +7,14 @@ def solve(init_board):
     """
     sudoku_problem = Problem()
     ##define vsars --> init vals here?
-    sudoku_problem.addVariables(range(81), range(1, 10))
-    
+    sudoku_problem.addVariables(list(range(81)), list(range(1, 10)))
 
-    # print(sudoku_problem._variables)
     #game constraints
     for i in range(9):
         #row constraints
-        sudoku_problem.addConstraint(AllDifferentConstraint(), [i for i in range(9 * i, 9 * (i + 1))])
+        sudoku_problem.addConstraint(AllDifferentConstraint(), [j for j in range(9 * i, 9 * (i + 1))])
         #column constraints
-        sudoku_problem.addConstraint(AllDifferentConstraint(), [i for i in range(i, 81, 9)])
+        sudoku_problem.addConstraint(AllDifferentConstraint(), [j for j in range(i, 81, 9)])
     for i in range(3):
         for j in range(3):
             start = i * 27 + j * 3
@@ -54,13 +52,14 @@ def console_print(board):
         Print a given board to the console.
     """
     for i in range(9):
-        print(*list(board[i:i+9]), sep='|')
+        start = i * 9
+        print(*list(board[start:start + 9]), sep='|')
         if i % 3 == 2:
             print(*(['-'] * 17), sep='')
 
 if __name__ == '__main__':
     board = test_board()
-    console_print(board)
+    # console_print(board)
     solution = solve(board)
     print()
     console_print(solution)
