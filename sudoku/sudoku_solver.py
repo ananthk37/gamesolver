@@ -1,13 +1,12 @@
 from constraint import AllDifferentConstraint, Problem
 
-def sudo_problem(init_board):
+def solve(init_board):
     """
         Solves sudoku problem using constraint module. Constructs
         problem from initial board stored as dictionary.
     """
     sudoku_problem = Problem()
-    print(init_board)
-    ##define vars --> init vals here?
+    ##define vsars --> init vals here?
     sudoku_problem.addVariables(range(81), range(1, 10))
     
 
@@ -43,7 +42,6 @@ def test_board():
         Return test board
     """
     board = "040100050107003960520008000000000017000906800803050620090060543600080700250097100"
-    console_print(board)
     board_dict = {}
     for i, val in enumerate(board):
         if val != '0':
@@ -62,7 +60,8 @@ def console_print(board):
 
 if __name__ == '__main__':
     board = test_board()
-    solution = sudo_problem(board)
+    console_print(board)
+    solution = solve(board)
     print()
     console_print(solution)
     pass
