@@ -39,9 +39,11 @@ def test_board():
     """
         Return test board
     """
-    board = "040100050107003960520008000000000017000906800803050620090060543600080700250097100"
+    return "040100050107003960520008000000000017000906800803050620090060543600080700250097100"
+
+def to_dict(init_board):
     board_dict = {}
-    for i, val in enumerate(board):
+    for i, val in enumerate(init_board):
         if val != '0':
             board_dict[i] = int(val)
     return board_dict
@@ -59,7 +61,8 @@ def console_print(board):
 
 if __name__ == '__main__':
     board = test_board()
-    # console_print(board)
+    console_print(board)
+    board = to_dict(board)
     solution = solve(board)
     print()
     console_print(solution)
