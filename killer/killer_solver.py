@@ -1,6 +1,6 @@
 from constraint import AllDifferentConstraint, ExactSumConstraint, Problem
 
-def solve(init_board):
+def solve(init_board, groups):
     killer_problem = Problem()
 
     killer_problem.addVariables(list(range(81)), list(range(1, 10)))
@@ -19,10 +19,11 @@ def solve(init_board):
                     start + 18, start + 19, start + 20]
             killer_problem.addConstraint(AllDifferentConstraint(), vals)
     
-    for variable in init_board["board"].keys():
+    for variable in init_board.keys():
         killer_problem.addConstraint(
             lambda var, val=init_board[variable]: var==val, [variable])
-    for group_sum, group in init_board["groups"]:
+    print(groups)
+    for group_sum, group in groups:
         killer_problem.addConstraint(ExactSumConstraint(group_sum), group)
     
     solution = killer_problem.getSolution()
@@ -43,4 +44,3 @@ def console_print(board):
         print(*list(board[start:start + 9]), sep='|')
         if i % 3 == 2:
             print(*(['-'] * 17), sep='')
-    
