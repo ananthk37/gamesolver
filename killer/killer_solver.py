@@ -22,7 +22,6 @@ def solve(init_board, groups):
     for variable in init_board.keys():
         killer_problem.addConstraint(
             lambda var, val=init_board[variable]: var==val, [variable])
-    print(groups)
     for group_sum, group in groups:
         killer_problem.addConstraint(ExactSumConstraint(group_sum), group)
     
