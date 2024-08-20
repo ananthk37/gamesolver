@@ -7,7 +7,7 @@ with open("tests/test_data/killer_test.json", "r") as f:
 
 
 @pytest.mark.parametrize("board,groups,solution", testdata)
-def test_sudoku_solver(board, groups, solution, client):
+def test_killer_solver(board, groups, solution, client):
     print(board)
     print(groups)
     response = client.post("/killer",json={
