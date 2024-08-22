@@ -27,11 +27,11 @@ def solve(init_board):
         sudoku_problem.addConstraint(
             lambda var, val=init_board[variable]: var==val, [variable])
 
-
-    solution = sudoku_problem.getSolution()
     solution_str = ""
-    for i in range(81):
-        solution_str += str(solution[i])
+    solution = sudoku_problem.getSolution()
+    if solution:
+        for i in range(81):
+            solution_str += str(solution[i])
 
     return solution_str
 
