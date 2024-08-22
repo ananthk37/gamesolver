@@ -39,10 +39,11 @@ def solve(board_size, board, groups):
     for group_op, group_result, group in groups:
         kenken_problem.addConstraint(ops_to_constraints[group_op](group_result), group)
 
-    solution = kenken_problem.getSolution()
     solution_str = ""
-    for i in range(board_size ** 2):
-        solution_str += str(solution[i])
-    
+    solution = kenken_problem.getSolution()
+    if solution:
+        for i in range(board_size ** 2):
+            solution_str += str(solution[i])
+        
     return solution_str
     

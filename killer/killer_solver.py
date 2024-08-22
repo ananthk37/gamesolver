@@ -25,10 +25,11 @@ def solve(init_board, groups):
     for group_sum, group in groups:
         killer_problem.addConstraint(ExactSumConstraint(group_sum), group)
     
-    solution = killer_problem.getSolution()
     solution_str = ""
-    for i in range(81):
-        solution_str += str(solution[i])
+    solution = killer_problem.getSolution()
+    if solution:
+        for i in range(81):
+            solution_str += str(solution[i])
     
     return solution_str
 

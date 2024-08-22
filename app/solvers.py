@@ -13,6 +13,8 @@ def sudoku():
     board = request.json["board"]
     board_dict = sudo_solver.to_dict(board)
     solved_board = sudo_solver.solve(board_dict)
+    if len(solved_board) == 0:
+        return "No Solution", 400
     response = {"board": solved_board}
     return jsonify(response)
 
@@ -22,6 +24,8 @@ def killer():
     board_dict = sudo_solver.to_dict(board)
     board_groups = request.json["groups"]
     solved_board = killer_solver.solve(board_dict, board_groups)
+    if len(solved_board) == 0:
+        return "No Solution", 400
     response = {"board": solved_board}
     return jsonify(response)
 
@@ -32,5 +36,7 @@ def kenken():
     board_dict = sudo_solver.to_dict(board)
     groups = request.json["groups"]
     solved_board = kenken_solver.solve(size, board_dict, groups)
+    if len(solved_board) == 0:
+        return "No Solution", 400
     response = {"board": solved_board}
     return jsonify(response)
